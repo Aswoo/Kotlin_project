@@ -32,9 +32,4 @@ object BindingAdapters {
     fun showHide(view: View, show: Boolean) {
         view.visibility = if (show) View.VISIBLE else View.GONE
     }
-    @JvmStatic
-    @BindingAdapter("glideUrl")
-    fun bindImage(imageView: ImageView, url: String?) {
-        Glide.with(imageView.context).load(url).into(imageView)
-    }
 }

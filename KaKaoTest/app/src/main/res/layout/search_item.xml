@@ -12,7 +12,7 @@
 
 
         <ImageView
-                app:imageUrl="@{searchitem.thumbnail_url}"
+                app:glideUrl="@{searchitem.thumbnail_url}"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 app:layout_constraintTop_toTopOf="parent"

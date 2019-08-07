@@ -15,8 +15,8 @@ class DetailViewModel @Inject constructor() : ViewModel() {
 
     fun setId(imageUrl: String, siteName: String) {
 
-        document?.image_url = imageUrl
-        document?.display_sitename = siteName
+        document.image_url = imageUrl
+        document.display_sitename = siteName
     }
 
 }

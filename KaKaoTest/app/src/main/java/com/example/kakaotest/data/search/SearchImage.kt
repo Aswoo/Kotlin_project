@@ -5,8 +5,8 @@ data class SearchImage(
     val documents: List<Document>
 ) {
     data class Meta(
-        val total_count: Integer,
-        val pageable_count: Integer,
+        val total_count: Int,
+        val pageable_count: Int,
         val is_end: Boolean
     )
 

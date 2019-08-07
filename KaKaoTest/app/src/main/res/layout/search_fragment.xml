@@ -11,7 +11,6 @@
         <variable
                 name="query"
                 type="LiveData&lt;String>" />
-
         <variable
                 name="searchResult"
                 type="LiveData&lt;Resource&lt;SearchImage>>" />
@@ -36,11 +35,13 @@
         <com.example.kakaotest.util.ClearEditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="검색!"
+                android:hint="enter 혹 search 버튼으로 검색을 실행합니다."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:id="@+id/input"
-                app:layout_constraintHorizontal_bias="0.0" app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 app:layout_constraintBottom_toTopOf="@+id/searchList"/>
 
 
@@ -67,8 +68,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </layout>

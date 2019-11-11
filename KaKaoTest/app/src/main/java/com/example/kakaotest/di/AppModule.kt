@@ -19,8 +19,11 @@ package com.example.kakaotest.di
 import com.example.kakaotest.api.SearchImageService
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module(includes = [ViewModelModule::class])
@@ -30,9 +33,30 @@ class AppModule {
     fun provideGithubService(): SearchImageService {
         return Retrofit.Builder()
             .baseUrl("https://dapi.kakao.com/")
+            .client(getUnsafeOkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(SearchImageService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun getUnsafeOkHttpClient(): OkHttpClient {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        val builder = OkHttpClient.Builder()
+        builder.addInterceptor(interceptor)
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .followRedirects(true)
+            .followSslRedirects(true)
+            .addInterceptor { chain ->
+                val newRequest = chain.request().newBuilder()
+                    .build()
+                chain.proceed(newRequest)
+            }
+        return builder.build()
+
     }
 
 }
